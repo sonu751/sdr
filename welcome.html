@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell and Buy</title>
+    <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+    <div class="header-container">
+        <div id="welcomeContainer"></div>
+        <a href="login.html" id="logoutButton" class="logoutButton">Logout</a>
+    </div>
+    <div class="header-container2">
+    <div id="userbalance"></div>
+    TeamA<div id="Expo"></div>
+    TeamB<div id="Expo2"></div>
+    </div>
+    <h1>Sell and Buy</h1>
+    <div>
+        <input type="number" id="balanceInput" placeholder="Balance" readonly>
+        <input type="number" id="expenditureInput" placeholder="Expenditure" readonly>
+        <input type="number" id="help" placeholder="help" readonly><br><br>
+
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName"readonly>
+        <label for="rate">Rate:</label>
+        <input type="number" id="rate">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity">
+        <label for="profit">Profit:</label>
+        <input type="number" id="profit" readonly>
+        <label for="loss">Loss:</label>
+        <input type="number" id="loss" readonly>
+        <button id="sellButton">Sell</button>
+        <hr>
+        pendig<div id="sellContainer"></div>
+        youbought<div id="buyContainer"></div>
+        <div id="totalLossProfit"></div>
+        <div id="perloss"></div>
+        <div id="perprofit"></div>
+        yousold<div id="sellerContainer"></div>
+        <div id="totalLoss"></div>
+    <script type="module" src="firebaseConfig.js"></script>
+    <script src="welcome.js" type="module"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Your existing JavaScript code
+            // ...
+
+            // Logout button event listener
+            const logoutButton = document.getElementById('logoutButton');
+            logoutButton.addEventListener('click', () => {
+                // Perform logout actions if needed
+                // For example, sign out the user if using Firebase Auth
+            });
+        });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const rateInput = document.getElementById('rate');
+    const quantityInput = document.getElementById('quantity');
+    const profitInput = document.getElementById('profit');
+    const lossInput = document.getElementById('loss');
+    const balanceInput = document.getElementById('balanceInput');
+    const userBalance = document.getElementById('userbalance'); // Corrected variable name
+    const userExpo = document.getElementById('Expo'); // Corrected variable name
+    const helpinut = document.getElementById('help'); // Corrected variable name
+
+    rateInput.addEventListener('input', updateLoss);
+    quantityInput.addEventListener('input', () => {
+        updateLoss();
+        updateProfit();
+        updateBalance();
+        updateExpo();
+        updatehelp();
+    });
+
+    function updateLoss() {
+        const rate = parseFloat(rateInput.value) || 0;
+        const quantity = parseFloat(quantityInput.value) || 0;
+        lossInput.value = rate * quantity / 100;
+    }
+
+    function updateProfit() {
+        profitInput.value = quantityInput.value;
+    }
+
+    function updateBalance() {
+    // Extract the numeric part from userBalance.textContent
+    const currentBalance = parseFloat(userBalance.textContent.split(':')[1]) || 0;
+    balanceInput.value = currentBalance - lossInput.value;
+    }
+    function updateExpo() {
+    // Extract the numeric parts from the text content
+    const currentExpo = parseFloat(userExpo.textContent.split(':')[1].trim()) || 0;
+    const loss = parseFloat(lossInput.value) || 0;
+    const profit = parseFloat(profitInput.value) || 0;
+
+    // Calculate the updated expenditure
+    expenditureInput.value = currentExpo + loss + profit;
+    }
+    function updatehelp() {
+    const currentBalance = parseFloat(userBalance.textContent.split(':')[1]) || 0;
+    const currentExpo = parseFloat(userExpo.textContent.split(':')[1].trim()) || 0;
+    helpinut.value = currentBalance + currentExpo-lossInput;
+   }
+
+
+
+
+        });
+        document.getElementById('itemName').value = 'defnder';
+    </script>
+</body>
+</html>
