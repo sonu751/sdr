@@ -117,6 +117,12 @@ document.getElementById('sellButton').addEventListener('click', async () => {
                         console.log("User balance and Expo updated successfully.");
                         // Update welcome message with the new balance and Expo
                         displayWelcomeMessage(currentUser);
+
+                        // Clear input fields
+                        document.getElementById('rate').value = '';
+                        document.getElementById('quantity').value = '';
+                        document.getElementById('profit').value = '';
+                        document.getElementById('loss').value = '';
                     }).catch((error) => {
                         console.error("Error updating user balance and Expo:", error);
                     });
