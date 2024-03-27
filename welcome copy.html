@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell and Buy</title>
+    <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+    <div class="header-container">
+        <div id="welcomeContainer"></div>
+        <a href="login.html" id="logoutButton" class="logoutButton">Logout</a>
+    </div>
+    <div id="userbalance"></div>
+    <div id="userbalance1">-</div>
+
+    1stbating<div id="Expo"></div>
+    2ndbating<div id="Expo2"></div>
+    </div>
+    <div>
+        <input type="number" id="balanceInput" placeholder="Balance" readonly>
+        <input type="number" id="expenditureInput" placeholder="Expenditure" readonly>
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName"readonly>
+        <label for="rate">Rate:</label>
+        <input type="number" id="rate">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity">
+        <label for="profit">Profit:</label>
+        <input type="number" id="profit" readonly>
+        <label for="loss">Loss:</label>
+        <input type="number" id="loss" readonly>
+        <button id="sellButton">खाये</button>
+        <div>
+            <a href="welcome.html" id="2ndbating" class="2ndbating">अगर आपको दूसरी टीम पर खाने ह तो क्लिक करे</a>
+        </div>
+        <hr>
+        <button onclick="showContainer('sellContainer')">Pending</button>
+        <button onclick="showContainer('buyContainer')">Buy</button>
+        <button onclick="showContainer('sellerContainer')">Seller</button>
+        
+        <div id="sellContainer" class="container">Sell Container Content</div>
+        <div id="buyContainer" class="container" style="display: none;">Buy Container Content</div>
+        <div id="sellerContainer" class="container" style="display: none;">Seller Container Content</div>
+    <script type="module" src="firebaseConfig.js"></script>
+    <script src="welcome copy.js" type="module"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Your existing JavaScript code
+            // ...
+
+            // Logout button event listener
+            const logoutButton = document.getElementById('logoutButton');
+            logoutButton.addEventListener('click', () => {
+                // Perform logout actions if needed
+                // For example, sign out the user if using Firebase Auth
+            });
+        });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const rateInput = document.getElementById('rate');
+    const quantityInput = document.getElementById('quantity');
+    const profitInput = document.getElementById('profit');
+    const lossInput = document.getElementById('loss');
+    const balanceInput = document.getElementById('balanceInput');
+    const userBalance = document.getElementById('userbalance'); // Corrected variable name
+    const userExpo = document.getElementById('Expo'); // Corrected variable name
+    const helpinut = document.getElementById('help'); // Corrected variable name
+
+    rateInput.addEventListener('input', updateLoss);
+    quantityInput.addEventListener('input', () => {
+        updateLoss();
+        updateProfit();
+        updateBalance();
+        updateExpo();
+    });
+
+    function updateLoss() {
+        const rate = parseFloat(rateInput.value) || 0;
+        const quantity = parseFloat(quantityInput.value) || 0;
+        lossInput.value = rate * quantity / 100;
+    }
+
+    function updateProfit() {
+        profitInput.value = quantityInput.value;
+    }
+
+    function updateBalance() {
+    // Extract the numeric part from userBalance.textContent
+    const currentBalance = parseFloat(userBalance.textContent.split(':')[1]) || 0;
+    balanceInput.value = currentBalance - lossInput.value;
+    }
+    function updateExpo() {
+    // Extract the numeric parts from the text content
+    const currentExpo = parseFloat(userExpo.textContent.split(':')[1].trim()) || 0;
+    const loss = parseFloat(lossInput.value) || 0;
+    const profit = parseFloat(profitInput.value) || 0;
+
+    // Calculate the updated expenditure
+    expenditureInput.value = currentExpo + loss + profit;
+    }
+
+        });
+        document.getElementById('itemName').value = '2st bating';
+
+        function showContainer(containerId) {
+    var containers = document.querySelectorAll('.container');
+    containers.forEach(function(container) {
+        if (container.id === containerId) {
+            container.style.display = 'block';
+        } else {
+            container.style.display = 'none';
+        }
+    });
+}
+
+    </script>
+</body>
+</html>
