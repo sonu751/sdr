@@ -9,9 +9,11 @@
 <body>
     <div class="header-container">
         <div id="welcomeContainer"></div>
-        <a href="index.html" id="logoutButton" class="logoutButton">Logout</a>
+        <a href="login.html" id="logoutButton" class="logoutButton">Logout</a>
     </div>
     <div id="userbalance"></div>
+    <div id="userbalance1">-</div>
+
     1stbating<div id="Expo"></div>
     2ndbating<div id="Expo2"></div>
     </div>
@@ -29,14 +31,17 @@
         <label for="loss">Loss:</label>
         <input type="number" id="loss" readonly>
         <button id="sellButton">खाये</button>
+        <div>
+        <a href="welcome copy.html" id="2ndbating" class="2ndbating">अगर आपको दूसरी टीम पर खाने ह तो क्लिक करे</a>
+    </div>
         <hr>
-        pendig<div id="sellContainer"></div>
-        youbought<div id="buyContainer"></div>
-        <div id="totalLossProfit"></div>
-        <div id="perloss"></div>
-        <div id="perprofit"></div>
-        yousold<div id="sellerContainer"></div>
-        <div id="totalLoss"></div>
+        <button onclick="showContainer('sellContainer')">Pending</button>
+        <button onclick="showContainer('buyContainer')">Buy</button>
+        <button onclick="showContainer('sellerContainer')">Seller</button>
+        
+        <div id="sellContainer" class="container">Sell Container Content</div>
+        <div id="buyContainer" class="container" style="display: none;">Buy Container Content</div>
+        <div id="sellerContainer" class="container" style="display: none;">Seller Container Content</div>
     <script type="module" src="firebaseConfig.js"></script>
     <script src="welcome.js" type="module"></script>
     <script>
@@ -68,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProfit();
         updateBalance();
         updateExpo();
-        updatehelp();
     });
 
     function updateLoss() {
@@ -95,17 +99,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calculate the updated expenditure
     expenditureInput.value = currentExpo + loss + profit;
     }
-    function updatehelp() {
-    const currentBalance = parseFloat(userBalance.textContent.split(':')[1]) || 0;
-    const currentExpo = parseFloat(userExpo.textContent.split(':')[1].trim()) || 0;
-    helpinut.value = currentBalance + currentExpo-lossInput;
-   }
-
-
-
 
         });
         document.getElementById('itemName').value = '1st bating';
+
+        function showContainer(containerId) {
+    var containers = document.querySelectorAll('.container');
+    containers.forEach(function(container) {
+        if (container.id === containerId) {
+            container.style.display = 'block';
+        } else {
+            container.style.display = 'none';
+        }
+    });
+}
+
     </script>
 </body>
 </html>
