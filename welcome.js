@@ -28,9 +28,9 @@ function displayWelcomeMessage(user) {
                 if (userData.email === currentUserEmail) {
                     const username = userData.name || 'User';
                     const welcomeMessage = document.createElement('p');
-                    const userBalance = userData.Balance || 'Undefined';
-                    const userExpo = userData.Expo || 'Undefined';
-                    const userExpo2 = userData.Expo2 || 'Undefined';
+                    const userBalance = userData.Balance !== undefined ? userData.Balance : 0;
+                    const userExpo = userData.Expo !== undefined ? userData.Expo : 0;
+                    const userExpo2 = userData.Expo2 !== undefined ? userData.Expo2 : 0;
                     welcomeMessage.textContent = `Welcome, ${username}!`;
                     welcomeContainer.appendChild(welcomeMessage);
                     userBalanceElement.textContent = `User Balance: ${userBalance}`;
@@ -278,9 +278,6 @@ function displayAllBuys(snapshot, currentUserEmail) {
         }
     });
 
-    // Display the total loss and total profit in the same row
-    const totalLossProfitElement = document.getElementById('totalLossProfit');
-    totalLossProfitElement.textContent = `Total Loss: ${totalLoss} Total Profit: ${totalProfit}`;
 }
 
 // Listen for changes in the buys node and display all buys where the current user is the buyer
@@ -331,10 +328,6 @@ function displayUserBuys(snapshot, currentUserEmail) {
             totalProfit += parseFloat(buyData.profit) || 0;
         }
     });
-
-    // Display the total loss
-    const totalLossElement = document.getElementById('totalLoss');
-    totalLossElement.textContent = `Total Loss: ${totalLoss} Total Profit: ${totalProfit}`;
 }
 
 // Listen for authentication state changes
