@@ -10,8 +10,12 @@ const loginForm = document.getElementById('loginForm');
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault(); // Prevent default form submission behavior
 
-  // Get user input values
-  const email = document.getElementById('email').value;
+// Get user input values
+const emailWithoutDomain = document.getElementById('email').value; // Get the email without domain
+const email = emailWithoutDomain + "@gmail.com"; // Append "@gmail.com" to the email
+
+// Continue with authentication process using the modified email
+
   const password = document.getElementById('password').value;
 
   try {
