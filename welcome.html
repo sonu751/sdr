@@ -10,29 +10,52 @@
     <div class="header-container">
         <div id="welcomeContainer"></div>
         <a href="index.html" id="logoutButton" class="logoutButton">Logout</a>
+        <div id="rresult">rreslut</div>
+            
+        <button id="sellButton">Refreh</button>
     </div>
     <div id="userbalance"></div>
-    <div id="userbalance1">-</div>
+    <div id="Expo"></div>
 
-    Rcb<div id="Expo"></div>
-    kkr<div id="Expo2"></div>
+<input type="text" id="userbalancein" readonly>
+<input type="text" id="Expoin" readonly>
+<input type="text" id="totalprofit" readonly>
+
+
     </div>
-    <div>
-        <input type="number" id="balanceInput" placeholder="Balance" readonly>
-        <input type="number" id="expenditureInput" placeholder="Expenditure" readonly>
-        <label for="itemName">Item Name:</label>
-        <input type="text" id="itemName"readonly>
-        <label for="rate">Rate:</label>
-        <input type="number" id="rate">
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity">
-        <label for="profit">Profit:</label>
-        <input type="number" id="profit" readonly>
-        <label for="loss">Loss:</label>
-        <input type="number" id="loss" readonly>
-        <button id="sellButton">खाये</button>
+        <div class="row-container">
+            <input type="text" id="rate" placeholder="रेट" oninput="validateInput(this)">
+            <input type="text" id="quantity" placeholder="कितने" oninput="validateInput(this)">
+            
+
+            <div id="l_pak"></div>
+            <div id="l_pal"></div>
+        </div>
+        
+
+        <div class="header-container2">
+            <div id="teama">TeamA</div>
+            <div id="ta">TeamA</div>
+            <input type="text" id="teamalp" readonly>
+            <button id="sellTeamA">खाये</button>
+            <button id="buyTeamA">लगाये</button>
+        </div>
+        <div class="row-container">
+
+            <div id="l_pbk"></div>
+            <div id="l_pbl"></div>
+        </div>
+        <div class="header-container2">
+            <div id="teamb">TeamB</div>
+            <div id="tb">TeamA</div>
+            <input type="text" id="teamblp" readonly>
+
+            <button id="sellTeamb">खाये</button>
+            <button id="buyTeamb">लगाये</button>
+        </div>
+
         <div>
-        <a href="welcome copy.html" id="2ndbating" class="2ndbating">अगर आपको दूसरी टीम पर खाने ह तो क्लिक करे</a>
+        <a href="welcome copy.html" id="2ndbating" class="2ndbating"></a>
     </div>
         <hr>
         <button onclick="showContainer('sellContainer')">Pending</button>
@@ -57,51 +80,63 @@
             });
         });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const rateInput = document.getElementById('rate');
-    const quantityInput = document.getElementById('quantity');
-    const profitInput = document.getElementById('profit');
-    const lossInput = document.getElementById('loss');
-    const balanceInput = document.getElementById('balanceInput');
-    const userBalance = document.getElementById('userbalance'); // Corrected variable name
-    const userExpo = document.getElementById('Expo'); // Corrected variable name
-    const helpinut = document.getElementById('help'); // Corrected variable name
+// Get input elements for the first calculation
+const rateInput = document.getElementById('rate');
+const quantityInput = document.getElementById('quantity');
+const resultDisplay1 = document.getElementById('l_pak'); // Displaying (${result1} / ${result2})
+const resultDisplay2 = document.getElementById('l_pal'); // Displaying (${result3} / ${result4})
 
-    rateInput.addEventListener('input', updateLoss);
-    quantityInput.addEventListener('input', () => {
-        updateLoss();
-        updateProfit();
-        updateBalance();
-        updateExpo();
-    });
+// Function to calculate and display the first set of results
+function calculateFirstResult() {
+    const rate = parseFloat(rateInput.value) || 0;
+    const quantity = parseFloat(quantityInput.value) || 0;
+    
+    const result1 = rate * quantity / -100; // First result: rate * quantity / -100 (Red)
+    const result2 = quantity; // Second result: rate * quantity (Green)
+    
+    const result3 = -quantity; // Third result: rate * quantity / -100 (Red)
+    const result4 = rate * quantity / 100; // Fourth result: rate * quantity (Green)
+    
+    const resultString1 = `<span style="color: red;">(${result1} </span> / <span style="color: green;">${result2} </span>)`;
+    const resultString2 = `<span style="color: red;">(${result3} </span> / <span style="color: green;">${result4} </span>)`;
+    
+    resultDisplay1.innerHTML = resultString1;
+    resultDisplay2.innerHTML = resultString2;
+}
 
-    function updateLoss() {
-        const rate = parseFloat(rateInput.value) || 0;
-        const quantity = parseFloat(quantityInput.value) || 0;
-        lossInput.value = rate * quantity / 100;
-    }
+// Listen for changes in rate and quantity inputs for the first calculation
+rateInput.addEventListener('input', calculateFirstResult);
+quantityInput.addEventListener('input', calculateFirstResult);
 
-    function updateProfit() {
-        profitInput.value = quantityInput.value;
-    }
+// Get input elements for the second calculation
+const ratebInput = document.getElementById('rateb');
+const quantitybInput = document.getElementById('quantityb');
+const resultDisplay3 = document.getElementById('l_pbk'); // Displaying (${result1} / ${result2})
+const resultDisplay4 = document.getElementById('l_pbl'); // Displaying (${result3} / ${result4})
 
-    function updateBalance() {
-    // Extract the numeric part from userBalance.textContent
-    const currentBalance = parseFloat(userBalance.textContent.split(':')[1]) || 0;
-    balanceInput.value = currentBalance - lossInput.value;
-    }
-    function updateExpo() {
-    // Extract the numeric parts from the text content
-    const currentExpo = parseFloat(userExpo.textContent.split(':')[1].trim()) || 0;
-    const loss = parseFloat(lossInput.value) || 0;
-    const profit = parseFloat(profitInput.value) || 0;
+// Function to calculate and display the second set of results
+function calculateSecondResult() {
+    const rateb = parseFloat(ratebInput.value) || 0;
+    const quantityb = parseFloat(quantitybInput.value) || 0;
+    
+    const result1b = rateb * quantityb / -100; // First result: rate * quantity / -100 (Red)
+    const result2b = quantityb; // Second result: rate * quantity (Green)
+    
+    const result3b = -quantityb; // Third result: rate * quantity / -100 (Red)
+    const result4b = rateb * quantityb / 100; // Fourth result: rate * quantity (Green)
+    
+    const resultString3 = `<span style="color: red;">(${result1b} </span> / <span style="color: green;">${result2b} </span>)`;
+    const resultString4 = `<span style="color: red;">(${result3b} </span> / <span style="color: green;">${result4b} </span>)`;
+    
+    resultDisplay3.innerHTML = resultString3;
+    resultDisplay4.innerHTML = resultString4;
+}
 
-    // Calculate the updated expenditure
-    expenditureInput.value = currentExpo + loss + profit;
-    }
+// Listen for changes in rate and quantity inputs for the second calculation
 
-        });
-        document.getElementById('itemName').value = 'kkr';
+
+
+/////////////////////////////////////////////////
 
         function showContainer(containerId) {
     var containers = document.querySelectorAll('.container');
@@ -114,6 +149,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 }
 
-    </script>
+ </script>
+<script>
+function validateInput(input) {
+    // Get the entered value
+    var value = input.value;
+    
+    // Remove any non-numeric characters
+    value = value.replace(/[^0-9.]/g, '');
+
+    // If the value is empty after removing non-numeric characters, set it to empty
+    if (value === '') {
+        input.value = '';
+        return;
+    }
+
+    // Convert the value to a float
+    var floatValue = parseFloat(value);
+
+    // Check if the value is greater than 0
+    if (floatValue <= 0 || isNaN(floatValue)) {
+        // If not, set the value to empty
+        input.value = '';
+    } else {
+        // Set the validated value back to the input
+        input.value = floatValue;
+    }
+}
+</script>
+
+
+   
 </body>
 </html>
