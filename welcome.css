@@ -14,10 +14,40 @@
 
 /* Style for sell container */
 #sellContainer {
-    background-color: #c9f7e1; /* Light green */
-    padding: 10px;
+    background-color: #0bfb87; /* Light green */
+    padding: 5px;
     margin-bottom: 10px;
 }
+.header-container {
+
+    padding:1px; /* Padding around the content */
+    border-radius: 1px; /* Rounded corners */
+    margin-bottom: 2px; /* Spacing below the element */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for a subtle effect */
+}
+
+.header-container p {
+    margin-bottom: 1px; /* Spacing between paragraphs */
+    font-size: 10px; /* Font size for paragraphs */
+
+}
+
+.teama,
+.teamb {
+    font-weight: bold; /* Bold text */
+    color: blue; /* Blue color for teama */
+}
+
+.kya {
+    font-style: italic; /* Italic text */
+    color: green; /* Green color for kya */
+}
+
+
+
+
+
+
 
 /* Style for buy container */
 #buyContainer {
@@ -56,3 +86,167 @@ p {
     padding: 10px;
     margin-bottom: 10px;
 }
+#rate {
+    width: 60px; /* Adjust the width as needed */
+    padding: 20px; /* Adjust the padding as needed */
+    border: 3px solid #d70707; /* Add a border */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    font-size: 100%; /* Adjust font size */
+    outline: none; /* Remove default focus outline */
+    height: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: rgb(238, 224, 232); 
+    font-weight: 1000; /* Set the font weight to bold */
+
+
+    /* Add any other styling you want */
+  }
+#quantity {
+    width: 90px; /* Adjust the width as needed */
+    padding: 20px; /* Adjust the padding as needed */
+    border: 3px solid #d70707; /* Add a border */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    font-size: 100%; /* Adjust font size */
+    outline: none; /* Remove default focus outline */
+    height: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: rgb(238, 224, 232);
+    font-weight: 1000; /* Set the font weight to bold */
+
+  }
+  .header-container2 {
+    display: flex;
+    justify-content: 1px; /* changed from justify-content: 1px; */
+    align-items: center;
+    background-color: #8eed09; /* Light gray */
+    margin-right:  1px;
+    height: 30px; /* Adjust the height as needed */
+}
+#sellTeamA {
+
+    margin-left: 30px;
+    margin-right: 30px;
+
+  }
+  #sellTeamA:hover {
+    background-color: #ea0918; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+}
+#buyTeamA {
+
+    margin-left: 5px;
+    margin-right: 5px;
+
+  }
+  #buyTeamA:hover {
+    background-color: #ea0918; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+}
+#sellTeamb {
+
+    margin-left: 30px;
+    margin-right: 30px;
+
+  }
+  #sellTeamb:hover {
+    background-color: #ea0918; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+}
+#buyTeamb {
+
+    margin-left: 5px;
+    margin-right: 5px;
+
+  }
+  #buyTeamb:hover {
+    background-color: #ea0918; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+}
+    
+.row-container {
+    display: flex;
+    align-items: center; /* Center align vertically */
+}
+
+#teama {
+    margin-right: 20px; /* Add spacing between elements */
+}
+
+#l_p {
+    margin-left: 15px; /* Add spacing between elements */
+}
+#teamb {
+    margin-right: 20px; /* Add spacing between elements */
+}
+#l_pak {
+    margin-left: 50px; /* Add spacing between elements */
+}
+#l_pal {
+    margin-left: 25px; /* Add spacing between elements */
+}
+#l_pbk {
+    margin-left: 50px; /* Add spacing between elements */
+}
+#l_pbl {
+    margin-left: 25px; /* Add spacing between elements */
+}
+#l_pak,
+#l_pal,
+#l_pbk,
+#l_pbl{
+    font-size: 8px;
+}
+#rateb {
+    width: 20px; /* Adjust the width as needed */
+    padding: 10px; /* Adjust the padding as needed */
+    border: 3px solid #d70707; /* Add a border */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    font-size: 100%; /* Adjust font size */
+    outline: none; /* Remove default focus outline */
+    height: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    /* Add any other styling you want */
+  }
+#quantityb {
+    width: 55px; /* Adjust the width as needed */
+    padding: 10px; /* Adjust the padding as needed */
+    border: 3px solid #d70707; /* Add a border */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    font-size: 100%; /* Adjust font size */
+    outline: none; /* Remove default focus outline */
+    height: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: rgb(19, 168, 218);
+  }
+  #teamalp,
+  #teamblp {
+    width: 55px; /* Adjust the width as needed */
+    
+    
+    border-radius: 5px; /* Add border radius for rounded corners */
+    font-size: 100%; /* Adjust font size */
+    outline: none; /* Remove default focus outline */
+    height: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+
+
+
+  #userbalancein,
+  #Expoin,
+  #totalprofit {
+    width: 25%;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: rgb(19, 168, 218);
+    /* Add more styles here as needed */
+}
+
+  
